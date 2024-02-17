@@ -1,0 +1,14 @@
+@startuml
+
+main --> StockController: screening(範囲指定)
+    loop 範囲
+        StockController --> ScrapeController: getStockInfo()
+        ScrapeController --> StockController
+        StockController --> StockController: judge()
+        opt 条件を満たす場合
+            StockController --> StockController: writeFile()
+        end
+    end
+StockController --> main
+
+@enduml
